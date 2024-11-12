@@ -28,4 +28,10 @@ public class UsuarioController {
         usuarioService.registrarUsuario(usuario);
         return "redirect:/usuarios/registro";
     }
+    
+    @PostMapping("/registroU")
+    public String usuarioRegistro(Usuario usuario) {
+        usuarioService.registrarUsuario(usuario);
+        return "redirect:/usuarios/registro";
+    }
 }

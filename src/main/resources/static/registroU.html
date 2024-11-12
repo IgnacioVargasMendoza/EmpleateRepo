@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="head">
+        <title>empleate</title>
+        <meta charset="UTF-8" />
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>   
+        
+<!--        PARA LA PLANTILLA-->
+        <style>
+            header {
+                display: flex;
+                background-color: #a99ccf; 
+                height: 49px;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .opcionesR{
+                padding-right: 150px;
+            }
+            .opcionesR a{
+                margin-right: 30px;
+            }
+            
+            .input-barra {
+                width: 666px; 
+                height: 26px; 
+                margin-left: 100px; 
+            }
+            
+             .btnR {
+                background-color: #859df1;
+                color: black;
+                padding: 10px 20px;
+                font-size: 18px;
+                border: none;
+                border-radius: 5px;
+                margin-left: 100px;
+                cursor: pointer;
+            }
+            .btnR:hover {
+                background-color: #7089d4;
+            }
+            
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <h2>emple@te</h2>
+            </nav>
+            <nav class="opcionesR">
+                <a>Feria</a>
+                <a>Empleos</a>
+            </nav>
+            
+        </header>
+        <!--        FINAL DE LA PLANTILLA-->
+        <br>
+        <br>
+        <br>
+        <h1 style="margin-left: 100px;">Nuevo usuario</h1>
+        <br>
+        <h2 style="margin-left: 100px;">Nombre</h2>
+        
+        <div class="input-group mb-3 input-barra">
+            <input type="text" class="form-control" aria-label="Text input">
+        </div>
+        
+        <br>
+        <h2 style="margin-left: 100px;">Apellidos</h2>
+        
+        <div class="input-group mb-3 input-barra">
+            <input type="text" class="form-control" aria-label="Text input">
+        </div>
+        
+        <br>
+        <h2 style="margin-left: 100px;">Fecha de nacimiento (DD/MM/AA)</h2>
+        
+        <div class="input-group mb-3 input-barra">
+            <input type="text" class="form-control" aria-label="Text input">
+        </div>
+        
+        <br>
+        <h2 style="margin-left: 100px;">Teléfono</h2>
+        
+        <div class="input-group mb-3 input-barra">
+            <input type="text" class="form-control" aria-label="Text input">
+        </div>
+        
+        <br>
+        <h2 style="margin-left: 100px;">E-mail</h2>
+        
+        <div class="input-group mb-3 input-barra">
+            <input type="text" class="form-control" aria-label="Text input">
+        </div>
+        
+        <br>
+        <h2 style="margin-left: 100px;">Contraseña</h2>
+        
+        <div class="input-group mb-3 input-barra">
+            <input type="text" class="form-control" aria-label="Text input">
+        </div>
+        
+        <br>
+        <button type="button" class="btnR">Crear usuario</button>
+        <button type="button" class="btnR">Hacer login</button>
+        
+    </body>
+</html>
