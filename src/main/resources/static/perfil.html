@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Perfil de Empleado</title>
+        <link th:href="@{/webjars/bootstrap/5.3.0-alpha1/css/bootstrap.min.css}" rel="stylesheet">
+        <link th:href="@{/webjars/font-awesome/css/all.min.css}" rel="stylesheet">
+        <link href="css/estilos.css" rel="stylesheet" type="text/css">
+        <style>
+            body {
+                background-color: #f8f9fa;
+                font-family: Arial, sans-serif;
+            }
+            .barraSuperior {
+                background-color: #a99ccf;
+                color: white;
+                padding: 15px;
+            }
+            .container-fluid {
+                max-width: 1400px;
+                margin: auto;
+            }
+            .form-container {
+                background-color: #ffffff;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                height: 100%;
+            }
+            .btn-custom {
+                width: 100%;
+                padding: 10px;
+                font-weight: bold;
+                font-size: 16px;
+                border-radius: 8px;
+            }
+            .sidebar {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                height: 100%;
+            }
+            .sidebar h5 {
+                font-weight: bold;
+                color: #4b6cb7;
+            }
+            .profile-list {
+                list-style-type: none;
+                padding: 0;
+            }
+            .profile-list li {
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+            }
+            .profile-list li:last-child {
+                border-bottom: none;
+            }
+            .profile-list a {
+                text-decoration: none;
+                color: #333;
+            }
+            .profile-list a:hover {
+                color: #4b6cb7;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Barra Superior -->
+        <header>
+            <div class="barraSuperior">
+                <h1 class="tituloPrincipal d-inline">emple@te</h1>
+                <nav class="d-inline ms-4">
+                    <a href="#" class="text-white text-decoration-none ms-3">Feria</a>
+                    <a href="#" class="text-white text-decoration-none ms-3">Empleos</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Contenido Principal -->
+        <div class="container-fluid mt-4">
+            <div class="row">
+                <!-- Columna de Formulario de Perfil de Empleado -->
+                <div class="col-lg-8">
+                    <div class="form-container">
+                        <h2 class="mb-4 text-center text-primary">Perfil de Empleado</h2>
+
+                        <form action="/perfil/actualizar" method="post">
+                            <!-- Información Básica -->
+                            <div class="card p-3 mb-3">
+                                <h5 class="card-title">Información Básica</h5>
+                                <div class="mb-3">
+                                    <label for="nombre" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control form-control-lg" id="nombre" name="nombre" value="{{usuario.nombre}}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="apellido" class="form-label">Apellido</label>
+                                    <input type="text" class="form-control form-control-lg" id="apellido" name="apellido" value="{{usuario.apellido}}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                                    <input type="date" class="form-control form-control-lg" id="fechaNacimiento" name="fechaNacimiento" value="{{usuario.fechaNacimiento | date:'yyyy-MM-dd'}}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="telefono" class="form-label">Teléfono</label>
+                                    <input type="text" class="form-control form-control-lg" id="telefono" name="telefono" value="{{usuario.telefono}}" required>
+                                </div>
+                            </div>
+
+                            <!-- Información de Contacto -->
+                            <div class="card p-3 mb-3">
+                                <h5 class="card-title">Información de Contacto</h5>
+                                <div class="mb-3">
+                                    <label for="correoElectronico" class="form-label">Correo Electrónico</label>
+                                    <input type="email" class="form-control form-control-lg" id="correoElectronico" name="correoElectronico" value="{{usuario.correoElectronico}}" required>
+                                </div>
+                            </div>
+
+                            <!-- Experiencia, Educación, Certificaciones y Puestos Desempeñados -->
+                            <div class="card p-3 mb-3">
+                                <h5 class="card-title">Experiencia y Formación</h5>
+                                <div class="mb-3">
+                                    <label for="experiencia" class="form-label">Experiencia</label>
+                                    <textarea class="form-control form-control-lg" id="experiencia" name="experiencia" rows="3">{{perfil.experiencia}}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="educacion" class="form-label">Educación</label>
+                                    <textarea class="form-control form-control-lg" id="educacion" name="educacion" rows="3">{{perfil.educacion}}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="certificaciones" class="form-label">Certificaciones</label>
+                                    <textarea class="form-control form-control-lg" id="certificaciones" name="certificaciones" rows="3">{{perfil.certificaciones}}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="puestosDesempenados" class="form-label">Puestos Desempeñados</label>
+                                    <textarea class="form-control form-control-lg" id="puestosDesempenados" name="puestosDesempenados" rows="3">{{perfil.puestosDesempenados | join(', ')}}</textarea>
+                                </div>
+                            </div>
+
+                            <!-- Botones para actualizar, guardar e ir atrás -->
+                            <div class="d-flex gap-2 mt-4">
+                                <button type="button" class="btn btn-info btn-custom"><i class="fas fa-edit"></i> Actualizar Información</button>
+                                <button type="submit" class="btn btn-success btn-custom"><i class="fas fa-save"></i> Guardar</button>
+                                <a href="/perfil/ver" class="btn btn-dark btn-custom"><i class="fas fa-arrow-left"></i> Atrás</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Columna de Perfiles Existentes -->
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                        <h5>Perfiles Existentes</h5>
+                        <ul class="profile-list">
+                            <!-- Ejemplo de enlaces a perfiles, reemplaza estos con enlaces dinámicos -->
+                            <li><a href="#">Carlos González</a></li>
+                            <li><a href="#">Ana Martínez</a></li>
+                            <li><a href="#">Luis Pérez</a></li>
+                            <li><a href="#">Marta Rodríguez</a></li>
+                            <li><a href="#">Jorge Ramírez</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script th:src="@{/webjars/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js}"></script>
+    </body>
+</html>
