@@ -12,4 +12,6 @@ public interface UsuarioService {
 
     // Método para obtener todos los usuarios
     List<Usuario> obtenerTodosLosUsuarios();
+
+    public Optional<Usuario> obtenerUsuarioPorCorreo(String identificador);
 }

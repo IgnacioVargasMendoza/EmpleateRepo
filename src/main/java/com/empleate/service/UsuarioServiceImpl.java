@@ -27,4 +27,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     public List<Usuario> obtenerTodosLosUsuarios() {
         return usuarioDao.findAll();
     }
+
+    @Override
+    public Optional<Usuario> obtenerUsuarioPorCorreo(String identificador) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
