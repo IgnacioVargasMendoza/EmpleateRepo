@@ -14,4 +14,5 @@ public interface UsuarioService {
     List<Usuario> obtenerTodosLosUsuarios();
 
     public Optional<Usuario> obtenerUsuarioPorCorreo(String identificador);
+
 }
