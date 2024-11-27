@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/plantillaEmpleado :: head">
+    </head>
+
+    <body>
+        <header th:replace="layout/plantillaEmpleado :: header"></header>
+
+<!--        El container con el espaciado-->
+        <div class="container mt-5">
+<!--        con esto se ayuda que este contenido y el cuadro este a la derecha-->
+            <div class="row align-items-start">
+<!--                Estos son los grid examples-->
+                <div class="col-md-8">
+                    <h2>Agende una entrevista</h2>
+                    <br>
+                    <br>
+                        
+                    <p style="margin-left: 50px; max-width: 700px;">
+                        Seleccionar postulante
+                    </p>
+                    <input style="width: 400px; height: 26px; margin-left: 50px;" type="text" class="form-control" aria-label="Text input">
+                        
+                    <p style="margin-left: 50px; max-width: 700px;">
+                        Seleccionar fecha
+                    </p>
+                    <input style="width: 400px; height: 26px; margin-left: 50px;" type="text" class="form-control" aria-label="Text input">
+                        
+                    <p style="margin-left: 50px; max-width: 700px;">
+                        puesto de trabajo
+                    </p>
+                    <input style="width: 400px; height: 26px; margin-left: 50px;" type="text" class="form-control" aria-label="Text input">
+                        
+                    
+
+                </div>
+
+<!--                Este es el otro grid example-->
+                <div class="col-md-4">
+                    <h2>Agende una entrevista</h2>
+                    
+                    <div class="diseñoPostulacion4">
+                        
+                        <h5>Nombre</h5>
+                        <input style="width: 350x; height: 26px;" type="text" class="form-control" aria-label="Text input">
+                        <br>
+                            
+                        <h5>Confirmacion de entrevista</h5>
+                        <input style="width: 350x; height: 26px;" type="text" class="form-control" aria-label="Text input">
+                        <br>
+                            
+                        <h5>Puesto de trabajo</h5>
+                        <input style="width: 350x; height: 26px;" type="text" class="form-control" aria-label="Text input">
+                        <br>
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+
+    </body>
+</html>

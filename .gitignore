@@ -31,3 +31,4 @@ build/
 
 ### VS Code ###
 .vscode/
+/src/main/resources/firebase/proyectoweb-195c6-firebase-adminsdk-fu2f3-2bb2c163ba.json

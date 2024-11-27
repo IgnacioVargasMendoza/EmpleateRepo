@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/plantillaEmpleado :: head"> 
+    </head>
+
+    <body>
+        <header th:replace="layout/plantillaEmpleado :: header"></header>
+
+<!--        El container con el espaciado-->
+        <div class="container mt-5">
+<!--        con esto se ayuda que este contenido y el cuadro este a la derecha-->
+            <div class="row align-items-start">
+<!--                Estos son los grid examples-->
+                <div class="col-md-8">
+                    <h2 class="titulosEMPL">Titulo del Puesto</h2>
+                    <h3 style="margin-left: 50px; font-family: 'Montserrat', sans-serif; font-size: 18px;">Full-Stack Software Engineer</h3> 
+                    <h2 class="titulosEMPL">Descripción</h2>
+                    <p style="margin-left: 50px; max-width: 700px;">
+                        Responsabilidades
+                    </p>
+                    <p style="margin-left: 50px; max-width: 700px;">
+                        Colabore con equipos multifuncionales para definir, diseñar y ofrecer nuevas funciones.
+                        Cree y mantenga código eficiente, reutilizable y confiable para aplicaciones de front-end y back-end.
+                        Garantice un alto rendimiento y capacidad de respuesta de las aplicaciones mediante la implementación de mejores prácticas..
+                    </p>
+                    <p style="margin-left: 50px; max-width: 700px;">
+                        Requisitos
+                    </p>
+                    <p style="margin-left: 50px; max-width: 700px;">
+                        - Bachiller en Educación Media.
+                        - Al menos 1 año d    e experiencia en posiciones de ventas.
+                        - Conocimiento de CRM.
+                        - Excel Básico - Intermedio.
+                    </p>
+                    <p style="margin-left: 50px; max-width: 700px;">
+                        Beneficios
+                    </p>
+                    <p style="margin-left: 50px; max-width: 700px;">
+                         - Beca de estudios
+                         - Médico de empresa
+                    </p>
+
+                </div>
+
+<!--                Este es el otro grid example-->
+                <div class="col-md-4">
+                    <div class="diseñoPostulacion4">
+                        <h5>Organización</h5>
+                        <p>Command|Link</p>
+
+                        <h5>Fecha de Publicación</h5>
+                        <p>01/01/2024</p>
+
+                        <h5>Tipo de Empleo</h5>
+                        <p>Tiempo Completo</p>
+
+                        <h5>Ubicación</h5>
+                        <p>San José, Costa Rica</p>
+
+                        <button type="button">Postularse</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>
