@@ -35,11 +35,11 @@ body{
 }
 
 
-.form-container{
-    background-color:white;
+.form-container {
+    background-color: white;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rbga(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h2{
@@ -121,3 +121,152 @@ img {
     text-align: center;
     
 }
+
+/* Estilos para los inputs y botones */
+.input-custom {
+    border-radius: 30px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-custom:focus {
+    border-color: #6f42c1;
+    box-shadow: 0 0 10px rgba(111, 66, 193, 0.5);
+}
+
+.btn-lg {
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 50px;
+    transition: transform 0.3s ease;
+}
+
+/* Efecto en el botón de activación al hacer hover */
+.btn-interactive:hover {
+    transform: scale(1.05);
+    background-color: #5a3d91;
+    color: white;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Botón de regresar */
+.btn-primary {
+    background-color: #6f42c1;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #5a3d91;
+}
+
+
+/* Estilo para los inputs y botones */
+.input-custom {
+    border-radius: 30px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-custom:focus {
+    border-color: #6f42c1;
+    box-shadow: 0 0 10px rgba(111, 66, 193, 0.5);
+}
+
+.btn-lg {
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 50px;
+    transition: transform 0.3s ease;
+}
+
+/* Efecto en el botón de activación al hacer hover */
+.btn-interactive:hover {
+    transform: scale(1.05);
+    background-color: #5a3d91;
+    color: white;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Botón de regresar */
+.btn-primary {
+    background-color: #6f42c1;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #5a3d91;
+}
+
+/* Estilo para los inputs y botones */
+    .input-custom {
+        border-radius: 30px;
+        border: 1px solid #ddd;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .input-custom:focus {
+        border-color: #6f42c1;
+        box-shadow: 0 0 10px rgba(111, 66, 193, 0.5);
+    }
+
+    .btn-lg {
+        padding: 12px 24px;
+        font-size: 18px;
+        border-radius: 50px;
+        transition: transform 0.3s ease;
+    }
+
+    /* Efecto en el botón de activación al hacer hover */
+    .btn-interactive:hover {
+        transform: scale(1.05);
+        background-color: #5a3d91;
+        color: white;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    /* Botón de regreso */
+    .btn-primary {
+        background-color: #6f42c1;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #5a3d91;
+    }
+    
+    /* Estilo para los inputs y botones */
+    .input-custom {
+        border-radius: 30px;
+        border: 1px solid #ddd;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .input-custom:focus {
+        border-color: #6f42c1;
+        box-shadow: 0 0 10px rgba(111, 66, 193, 0.5);
+    }
+
+    .btn-lg {
+        padding: 12px 24px;
+        font-size: 18px;
+        border-radius: 50px;
+        transition: transform 0.3s ease;
+    }
+
+    /* Efecto en el botón de recordatorio al hacer hover */
+    .btn-interactive:hover {
+        transform: scale(1.05);
+        background-color: #5a3d91;
+        color: white;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    /* Botón de regresar */
+    .btn-primary {
+        background-color: #6f42c1;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #5a3d91;
+    }

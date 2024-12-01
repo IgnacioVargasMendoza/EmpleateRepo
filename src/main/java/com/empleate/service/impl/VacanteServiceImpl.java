@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.empleate.service;
+package com.empleate.service.impl;
 
 import com.empleate.dao.VacanteDao;
 import com.empleate.domain.Vacante;
+import com.empleate.service.VacanteService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

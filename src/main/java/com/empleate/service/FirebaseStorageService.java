@@ -11,7 +11,7 @@ public interface FirebaseStorageService {
 
     final String BucketName = "proyectoweb-195c6.firebasestorage.app";
 
-    //Esta es la ruta básica de este proyecto Techshop
+    //Esta es la ruta básica de este proyecto
     final String rutaSuperiorStorage = "proyectoweb";
 
     //Ubicación donde se encuentra el archivo de configuración Json
