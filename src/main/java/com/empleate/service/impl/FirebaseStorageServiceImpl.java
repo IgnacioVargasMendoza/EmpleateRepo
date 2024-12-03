@@ -28,19 +28,14 @@ public class FirebaseStorageServiceImpl implements FirebaseStorageService {
     @Override
     public String cargaImagen(MultipartFile archivoLocalCliente, String carpeta, Long id) {
         try {
-            // El nombre original del archivo local del cliene
             String extension = archivoLocalCliente.getOriginalFilename();
 
-            // Se genera el nombre según el código del articulo. 
             String fileName = "img" + sacaNumero(id) + extension;
 
-            // Se convierte/sube el archivo a un archivo temporal
             File file = this.convertToFile(archivoLocalCliente);
 
-            // se copia a Firestore y se obtiene el url válido de la imagen (por 10 años) 
             String URL = this.uploadFile(file, carpeta, fileName);
 
-            // Se elimina el archivo temporal cargado desde el cliente
             file.delete();
 
             return URL;
@@ -51,7 +46,6 @@ public class FirebaseStorageServiceImpl implements FirebaseStorageService {
     }
 
     private String uploadFile(File file, String carpeta, String fileName) throws IOException {
-        //Se define el lugar y acceso al archivo .jasper
         ClassPathResource json = new ClassPathResource(rutaJsonFile + File.separator + archivoJsonFile);
         BlobId blobId = BlobId.of(BucketName, rutaSuperiorStorage + "/" + carpeta + "/" + fileName);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("media").build();
@@ -63,7 +57,6 @@ public class FirebaseStorageServiceImpl implements FirebaseStorageService {
         return url;
     }
 
-    //Método utilitario que convierte el archivo desde el equipo local del usuario a un archivo temporal en el servidor
     private File convertToFile(MultipartFile archivoLocalCliente) throws IOException {
         File tempFile = File.createTempFile("img", null);
         try (FileOutputStream fos = new FileOutputStream(tempFile)) {
@@ -73,7 +66,6 @@ public class FirebaseStorageServiceImpl implements FirebaseStorageService {
         return tempFile;
     }
 
-    //Método utilitario para obtener un string con ceros....
     private String sacaNumero(long id) {
         return String.format("%019d", id);
     }
