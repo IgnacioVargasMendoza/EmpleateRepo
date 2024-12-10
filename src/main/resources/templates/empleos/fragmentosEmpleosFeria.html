@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>empleate</title>
+    </head>
+    
+<!--    **********************************************************************-->
+    <body>
+<!--  *****      Empleos y eslogan*******-->
+        <section th:fragment="encabezado" class="py-4 mb-4 bg-light"> 
+<!--         Esto es para traer lo del titulo y descripcion de la BD-->
+        <tr th:each="feriaEmpleo : ${feriaEmpleo}">
+        <h1><i class="fas fa-cog"></i> [[${feriaEmpleo.titulo}]]</h1>
+        <p><i class="fas fa-cog"></i> [[${feriaEmpleo.descripcion}]]</p>
+        </section>
+<!--   *******     Botones que estan arriba bachillerato, tec  ******** -->
+<!-- ******** ******* Hay que hacer la logica de los filtros-->
+        <section th:fragment="botonesNivelEmpleo" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block"
+                            <i class="fas fa-graduation-cap"></i> [[#{empleo.bach}]]
+                        </button>
+                        
+                    </div>
+                    
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block"
+                            <i class="fas fa-certificate"></i> [[#{empleo.postGrados}]]
+                        </button>
+                        
+                    </div>
+                    
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block"
+                            <i class="fas fa-tools"></i> [[#{empleo.tecnicos}]]
+                        </button>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--        *************************************************************-->
+
+<!--        Revisar esta parte del id para confirmar que el id va a ser empleos por la tabla
+        o si es mejor id_Empleos-->
+        <section th:fragment="listadoEmpleos" id="empleos">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+<!--                        ********************************
+                            Esta parte de los empleos puede cambiar
+                            **************************************-->
+                            <div th:if="${empleos != null and !empleos.empty}">
+                                    
+                                    <tbody>
+<!--                                    Revisar bien esta parte, aca
+                                        es donde se van a mostrar todos los empleos-->
+                                        <tr th:each="empleo : ${empleos}">
+                                            
+<!--                                            Aca es con el diseño de bootstrap 
+                                            y deberia de enseñar todos los empleos 
+                                            con el mismo formato-->
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h5 class="mb-1">[[${empleo.titulo}]]</h5>
+                                                </div>
+                                                <p class="mb-1">[[${empleo.empresa}]]</p>
+                                                <small>[[${empleo.descripcion}]]</small>
+                                                
+<!--                                                Este es el boton que va a llevar a los
+                                                estudiantes al empleo al que van a 
+                                                aplicar-->
+                                                <button <i class="fas fa-certificate">Ver mas</button>
+                                            </a>
+                                            
+<!--                                            Esto queda como referencia para lo del boton
+                                            <td sec:authorize="hasRole('ROLE_ADMIN')">
+                                                <a th:href="@{/usuario/eliminar/}+${usuario.idUsuario}"
+                                                   class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
+                                                <a th:href="@{/usuario/modificar/}+${usuario.idUsuario}"
+                                                   class="btn btn-success">
+                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>-->
+                                    </tbody>
+                            </div>
+<!--                            Revisar si esta parte era empleo o empleos-->
+                            <div class="text-center p-2" th:if="${empleos == null or empleos.empty}">
+                                <span>[[#{lista.vacia}]]</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+    </body>
+</html>
