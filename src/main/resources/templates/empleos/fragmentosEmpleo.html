@@ -16,6 +16,81 @@
         <h1><i class="fas fa-cog"></i> [[#{titulo.empleos}]]</h1>
         <p><i class="fas fa-cog"></i> [[#{parrafo.empleos}]]</p>
         </section>
+        
+<!--Aqui es donde se coloca lo del boton agregar, abajo van a estar las opciones-->
+        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+<!--            Este DIV lo podemos usar de referencia para lo de los permisos, para 
+            que solo las empresas puedan agregar jobs-->
+<!--            <div class="container" sec:authorize="hasRole('ROLE_ADMIN')">-->
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarUsuario">
+                            <i class="fas fa-plus"></i> [[#{empleo.agregar}]]
+                        </button>
+                    </div>
+                </div>
+<!--            </div>-->
+        </section>
+
+<!--        Aqui es la vista, el pop up-->
+        <section th:fragment="agregarEmpleo">
+            <div id="agregarEmpleo" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">[[#{empleo.agregar}]]</h5>
+                            <button type="button" 
+                                    class="btn-close" 
+                                    data-bs-dismiss="modal" 
+                                    aria-label="Close"></button>
+                        </div> 
+                        
+<!--                        REVISAR LA FUNCIONALIDAD DE ESTE FORM-->
+                        <form th:action="@{/empleo/guardar}" th:object="${empleo}"
+                              method="POST" class="was-validated"
+                              enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="mb-3">
+<!--                                    Aca es donde se comienzan a agregar los campos-->
+<!--                                        Ver lo del ID Titulo y demas -->
+                                    <label for="titulo">[[#{empleo.titulo}]]</label>
+                                    <input type="text" class="form-control" name="titulo" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="descripcion">[[#{empleo.descripcion}]]</label>
+                                    <input type="text" class="form-control" name="descripcion" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="requerimientos">[[#{empleo.requerimiento}]]</label>
+                                    <input type="text" class="form-control" name="requerimientos" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="experiencia">[[#{empleo.experiencia}]]</label>
+                                    <input type="text" class="form-control" name="experiencia" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="gradoAcademico">[[#{empleo.gradoAcademico}]]</label>
+                                    <input type="text" class="form-control" name="gradoAcademico"/>
+                                </div>
+                               
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
 <!--   *******     Botones que estan arriba bachillerato, tec  ******** -->
 <!-- ******** ******* Hay que hacer la logica de los filtros-->
         <section th:fragment="botonesNivelEmpleo" class="py-4 mb-4 bg-light">
@@ -83,7 +158,7 @@
                                                 estudiantes al empleo al que van a 
                                                 aplicar-->
                                                 <button <i class="fas fa-certificate">Ver mas</button>
-                                            </a>
+                                            </a></tr>
                                             
 <!--                                            Esto queda como referencia para lo del boton
                                             <td sec:authorize="hasRole('ROLE_ADMIN')">

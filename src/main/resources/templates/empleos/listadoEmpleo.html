@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>empleate</title>
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"></header>
+
+        <section th:replace="~{empleos/fragmentosEmpleo :: botonesAgregar}"></section>
+        <section th:replace="~{empleos/fragmentosEmpleo :: agregarEmpleo}"></section>
+        <section th:replace="~{empleos/fragmentosEmpleo :: botonesNivelEmpleo}"></section>
+        <section th:replace="~{empleos/fragmentosEmpleo :: listadoEmpleos}"></section>
+        
+        <footer th:replace="~{layout/plantilla :: footer}"></footer>
+
+    </body>
+</html>
