@@ -15,7 +15,7 @@
             <div class="row align-items-start">
 <!--                Estos son los grid examples-->
                 <div class="col-md-8">
-                    <h1><i class="fas fa-cog"></i> [[#{entrevista.creacion}]]</h1>
+                    <h1>[[#{entrevista.creacion}]]</h1>
                     <br>
                     <br>
                         
@@ -40,7 +40,7 @@
 <!--                        Ver como queda este boton de enviar-->
                     <button 
                             type="button" 
-                            class="btn btn-primary btn-block"
+                            class="btn btn-primary btn-block">
                             <i class="fas fa-graduation-cap"></i> [[#{entrevista.btnEnviar}]]
                         </button>
 
@@ -50,6 +50,7 @@
                 <div class="col-md-4">
                     <div th:if="${entrevista != null and !entrevista.empty}">
                         
+                        <h1>[[#{entrevista.reporteEntrevista}]]</h1>
 <!--                        Para que en cada cuadro se muestre el titulo en cada valor-->
                         <thead class="table-dark">
                             <tr><th>#</th>
