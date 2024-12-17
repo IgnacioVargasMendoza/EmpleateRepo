@@ -58,14 +58,14 @@ public class RegistroServiceImpl implements RegistroService {
         usuario.setPassword(codigo.encode(usuario.getPassword()));
 
         if (!imagenFile.isEmpty()) {
-            usuarioService.save(usuario, false);
+            usuarioService.save(usuario);
             usuario.setRutaImagen(
                     firebaseStorageService.cargaImagen(
                             imagenFile,
                             "usuarios",
                             usuario.getIdUsuario()));
         }
-        usuarioService.save(usuario, true);
+        usuarioService.save(usuario);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class RegistroServiceImpl implements RegistroService {
             String clave = demeClave();
             usuario.setPassword(clave);
             usuario.setActivo(true);
-            usuarioService.save(usuario, true);
+            usuarioService.save(usuario);
             enviaCorreoActivar(usuario, clave);
             mensaje = String.format(
                     messageSource.getMessage(
@@ -118,7 +118,7 @@ public class RegistroServiceImpl implements RegistroService {
             String clave = demeClave();
             usuario2.setPassword(clave);
             usuario2.setActivo(true);
-            usuarioService.save(usuario2, false);
+            usuarioService.save(usuario2);
             enviaCorreoRecordar(usuario2, clave);
             mensaje = String.format(
                     messageSource.getMessage(
@@ -155,7 +155,7 @@ public class RegistroServiceImpl implements RegistroService {
         return clave;
     }
 
-    //Ojo cómo le lee una informacion del application.properties
+    //Ojo cÃ³mo le lee una informacion del application.properties
     @Value("${servidor.http}")
     private String servidor;
 

@@ -1,3 +1,151 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.edit-profile-container {
+    width: 80%;
+    max-width: 600px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+.btn-save {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+.btn-save:hover {
+    background-color: #218838;
+}
+.btn-back {
+    background-color: #6c757d;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+}
+.btn-back:hover {
+    background-color: #5a6268;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.profile-container {
+    display: flex;
+    width: 80%;
+    gap: 20px;
+}
+.profile-left, .profile-right {
+    width: 50%;
+}
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.profile-photo img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.profile-info h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+.profile-info p {
+    margin: 5px 0;
+    color: #555;
+}
+.profile-section {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+.profile-section h2 {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+.edit-button {
+    text-align: right;
+}
+.edit-button button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.edit-button button:hover {
+    background-color: #0056b3;
+}
+
 body{
     background-color: #f8f9fa
 }
@@ -14,7 +162,7 @@ body{
 
 .tituloPrincipal {
     font-size: 24px;
-    
+
     margin: 0;
 }
 
@@ -45,7 +193,7 @@ body{
 h2{
     text-align: center;
     margin-bottom: 30px;
-    
+
 }
 .container{
     max-width: 600px;
@@ -85,7 +233,7 @@ button.btn-primary {
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
-    
+
 }
 
 button.btn-primary:hover {
@@ -108,9 +256,9 @@ a.btn-link:hover{
 
 img {
     max-width: 100px;
-    border-radius: 50%; 
+    border-radius: 50%;
     object-fit: cover;
-   margin-top: 20px;
+    margin-top: 20px;
 }
 
 
@@ -119,7 +267,7 @@ img {
     font-size: 14px;
     margin-top: 10px;
     text-align: center;
-    
+
 }
 
 /* Estilos para los inputs y botones */
@@ -127,6 +275,9 @@ img {
     border-radius: 30px;
     border: 1px solid #ddd;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 50%; /* Ancho ajustado a la mitad de la pantalla */
+    display: block; /* Para que los elementos sean bloques */
+    margin: 0 auto; /* Centrar los elementos horizontalmente */
 }
 
 .input-custom:focus {
@@ -198,75 +349,75 @@ img {
 }
 
 /* Estilo para los inputs y botones */
-    .input-custom {
-        border-radius: 30px;
-        border: 1px solid #ddd;
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
+.input-custom {
+    border-radius: 30px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
 
-    .input-custom:focus {
-        border-color: #6f42c1;
-        box-shadow: 0 0 10px rgba(111, 66, 193, 0.5);
-    }
+.input-custom:focus {
+    border-color: #6f42c1;
+    box-shadow: 0 0 10px rgba(111, 66, 193, 0.5);
+}
 
-    .btn-lg {
-        padding: 12px 24px;
-        font-size: 18px;
-        border-radius: 50px;
-        transition: transform 0.3s ease;
-    }
+.btn-lg {
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 50px;
+    transition: transform 0.3s ease;
+}
 
-    /* Efecto en el botón de activación al hacer hover */
-    .btn-interactive:hover {
-        transform: scale(1.05);
-        background-color: #5a3d91;
-        color: white;
-        transition: transform 0.3s ease, background-color 0.3s ease;
-    }
+/* Efecto en el botón de activación al hacer hover */
+.btn-interactive:hover {
+    transform: scale(1.05);
+    background-color: #5a3d91;
+    color: white;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
 
-    /* Botón de regreso */
-    .btn-primary {
-        background-color: #6f42c1;
-        border: none;
-    }
+/* Botón de regreso */
+.btn-primary {
+    background-color: #6f42c1;
+    border: none;
+}
 
-    .btn-primary:hover {
-        background-color: #5a3d91;
-    }
-    
-    /* Estilo para los inputs y botones */
-    .input-custom {
-        border-radius: 30px;
-        border: 1px solid #ddd;
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
+.btn-primary:hover {
+    background-color: #5a3d91;
+}
 
-    .input-custom:focus {
-        border-color: #6f42c1;
-        box-shadow: 0 0 10px rgba(111, 66, 193, 0.5);
-    }
+/* Estilo para los inputs y botones */
+.input-custom {
+    border-radius: 30px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
 
-    .btn-lg {
-        padding: 12px 24px;
-        font-size: 18px;
-        border-radius: 50px;
-        transition: transform 0.3s ease;
-    }
+.input-custom:focus {
+    border-color: #6f42c1;
+    box-shadow: 0 0 10px rgba(111, 66, 193, 0.5);
+}
 
-    /* Efecto en el botón de recordatorio al hacer hover */
-    .btn-interactive:hover {
-        transform: scale(1.05);
-        background-color: #5a3d91;
-        color: white;
-        transition: transform 0.3s ease, background-color 0.3s ease;
-    }
+.btn-lg {
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 50px;
+    transition: transform 0.3s ease;
+}
 
-    /* Botón de regresar */
-    .btn-primary {
-        background-color: #6f42c1;
-        border: none;
-    }
+/* Efecto en el botón de recordatorio al hacer hover */
+.btn-interactive:hover {
+    transform: scale(1.05);
+    background-color: #5a3d91;
+    color: white;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
 
-    .btn-primary:hover {
-        background-color: #5a3d91;
-    }
+/* Botón de regresar */
+.btn-primary {
+    background-color: #6f42c1;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #5a3d91;
+}

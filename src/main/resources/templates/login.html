@@ -1,110 +1,132 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://wwww.thymeleaf.org">
+      xmlns:th="http://wwww.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head 
         th:replace="layout/plantilla :: head">  
         <meta charset="UTF-8" />
     </head>
     <body>
-    <header th:replace="layout/plantilla :: header"></header>
-    <div class="container my-5">
-        <div class="row justify-content-center"> 
-            <div class="col-md-6">
-                <!-- Card de inicio de sesión -->
-                <div class="card shadow-lg p-4 rounded">
-                    <div class="card-header text-center" style="background-color: #6f42c1; color: white;">
-                        <h2>[[#{login.login}]]</h2>
-                    </div>
-                    <div class="card-body">
-                        <!-- Formulario de inicio de sesión -->
-                        <form method="POST" th:action="@{/login}">
-                            <!-- Username -->
-                            <div class="form-group row my-3">
-                                <label class="col-md-5 my-auto" for="username">
-                                    <i class="fas fa-user-lock"></i> [[#{login.username}]]:
-                                </label>
-                                <div class="col-md-7 my-auto">
-                                    <input class="form-control input-custom" type="text" name="username" id="username" required/>
-                                </div>
-                            </div>
-                            <!-- Password -->
-                            <div class="form-group row my-3">
-                                <label class="col-md-5 my-auto" for="password">
-                                    <i class="fas fa-key"></i> [[#{login.password}]]
-                                </label>
-                                <div class="col-md-7 my-auto">
-                                    <input class="form-control input-custom" type="password" name="password" id="password" required/>
-                                </div>
-                            </div>
+        <header th:replace="layout/plantilla :: header"></header>
+        <div class="container-centered">
+            <!-- Formulario al lado izquierdo -->
+            <div class="card-body">
+                <h2 style="text-align: center; font-size: 2rem; margin-bottom: 20px;">
+                    Encuentra tu nuevo trabajo
+                </h2>
+                <form method="POST" th:action="@{/login}">
+                    <label for="username">
+                        <i class="fas fa-user-lock"></i> [[#{login.username}]]:
+                    </label>
+                    <input class="form-control input-custom" type="text" name="username" id="username" required/>
 
-                            <!-- Botones -->
-                            <div class="card-footer text-center">
-                                <button class="btn btn-outline-primary w-100 mb-3" type="button">
-                                    <a th:href="@{/registro/nuevo}" class="text-decoration-none text-primary">
-                                        <i class="fas fa-user-plus"></i> [[#{accion.registrar}]]
-                                    </a>
-                                </button>
-                                <button class="btn btn-outline-info w-100 mb-3" type="button">                                        
-                                    <a th:href="@{/registro/recordar}" class="text-decoration-none text-info">
-                                        <i class="fas fa-envelope"></i> [[#{accion.recordar}]]
-                                    </a>
-                                </button>
-                                <button class="btn btn-success w-100" type="submit">
-                                    <i class="fas fa-sign-in-alt"></i> [[#{login.login}]]
-                                </button>
-                            </div>
-                        </form>                            
-                    </div>
-                </div>
+                    <label for="password">
+                        <i class="fas fa-key"></i> [[#{login.password}]]:
+                    </label>
+                    <input class="form-control input-custom" type="password" name="password" id="password" required/>
 
-                <!-- Mensaje de error -->
-                <div th:if="${param.error != null}" class="mt-3 text-center">
-                    <div class="alert alert-danger">
-                        <h3>[[#{error.login}]]</h3>
+                    <div>
+                        <button class="btn btn-success" type="submit">
+                            <i class="fas fa-sign-in-alt"></i> [[#{login.login}]]
+                        </button>
+                        <button class="btn btn-outline-primary" type="button">
+                            <a th:href="@{/registro/nuevo}">
+                                <i class="fas fa-user-plus"></i> [[#{accion.registrar}]]
+                            </a>
+                        </button>
+                        <button class="btn btn-outline-info" type="button">
+                            <a th:href="@{/registro/recordar}">
+                                <i class="fas fa-envelope"></i> [[#{accion.recordar}]]
+                            </a>
+                        </button>
                     </div>
-                </div>
+                </form>
             </div>
-        </div>           
-    </div>
 
-    <!-- Estilos adicionales -->
-    <style>
-        /* Estilos para los inputs y botones */
-        .input-custom {
-            border-radius: 50px;
-            border: 1px solid #ddd;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
+            <!-- Imagen al lado derecho -->
+            <div class="image-container">
+                <img img src="https://eliezermolina.net/wp-content/uploads/2023/04/trabajo-remoto-510x296.png" 
+                     alt="Imagen de bienvenida" 
+                     class="img-fluid custom-image"/>
+            </div>
+        </div>
 
-        .input-custom:focus {
-            border-color: #6f42c1;
-            box-shadow: 0 0 10px rgba(111, 66, 193, 0.5);
-        }
+        <!-- Mensaje de error -->
+        <div th:if="${param.error != null}" class="mt-3 text-center">
+            <div class="alert alert-danger">
+                <h3>[[#{error.login}]]</h3>
+            </div>
+        </div>
 
-        .btn-custom:hover {
-            background-color: #6f42c1;
-            color: white;
-            box-shadow: 0 0 10px rgba(111, 66, 193, 0.5);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+        <style>
+            /* Contenedor principal: organiza el formulario y la imagen en fila */
+            .container-centered {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh; /* Ocupa toda la altura de la pantalla */
+                width: 100%; /* Ocupa toda la pantalla en ancho */
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                background-color: transparent;
+            }
 
-        /* Botón de tipo link */
-        .btn-outline-primary:hover,
-        .btn-outline-info:hover {
-            background-color: #6f42c1;
-            color: white;
-        }
+            /* Imagen: ocupa un ancho controlado */
+            .image-container {
+                flex: 1; /* La imagen ocupará un espacio proporcional */
+                text-align: center;
+                margin-left: 30px; /* Espacio entre el formulario y la imagen */
+            }
 
-        /* Efecto en los botones */
-        .btn-success:hover {
-            background-color: #28a745;
-            color: white;
-        }
-    </style>
-</body>
+            .custom-image {
+                max-width: 80%; /* Imagen ocupa el 80% de su contenedor */
+                height: auto; /* Mantiene la proporción original */
+                border-radius: 10px; /* Bordes redondeados */
+            }
 
-        <footer 
-            th:replace="layout/plantilla :: footer">
-        </footer>
+            /* Card-body: ocupa un espacio proporcional */
+            .card-body {
+                flex: 1; /* El formulario ocupará el mismo espacio que la imagen */
+                max-width: 700px; /* Máximo ancho */
+                padding: 40px;
+                border-radius: 10px;
+                box-sizing: border-box;
+            }
+
+            /* Inputs personalizados */
+            .input-custom {
+                border-radius: 8px;
+                border: 2px solid #ddd;
+                padding: 15px;
+                font-size: 1.2rem;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            label {
+                font-size: 1.3rem;
+                font-weight: bold;
+                margin-bottom: 10px;
+                display: inline-block;
+            }
+
+            /* Estilo personalizado para el botón btn-success */
+            .btn-success {
+                background-color: #a99ccf !important;
+                border-color: #a99ccf !important;
+                color: white !important;
+            }
+
+            .btn-success:hover {
+                background-color: #8c7bb8 !important;
+                border-color: #8c7bb8 !important;
+                color: white !important;
+            }
+        </style>
     </body>
+
+    <footer 
+        th:replace="layout/plantilla :: footer">
+    </footer>
 </html>

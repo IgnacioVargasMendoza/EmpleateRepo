@@ -15,7 +15,7 @@
     <body>
         <!-- 1 Sección para crear el boton de agregar... llamará a una ventana modal-->
         <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
-            <div class="container" sec:authorize="hasRole('ROLE_ADMIN')">
+            <div class="container" sec:authorize="hasRole('ROLE_EMPLEADOR')">
                 <div class="row">
                     <div class="col-md-3">   
                         <button 
@@ -73,6 +73,10 @@
                                 <div class="mb-3">
                                     <label for="telefono">[[#{usuario.telefono}]]</label>
                                     <input type="tel" class="form-control" name="telefono"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="fechaNacimiento">[[#{usuario.fechaNacimiento}]]</label>
+                                    <input type="date" class="form-control" name="fechaNacimiento" required="true"/>
                                 </div>
                                 <div class="mb-3">
                                     <label for="imagen">[[#{usuario.imagen}]]</label>
@@ -185,6 +189,12 @@
                                                     <label for="telefono">[[#{usuario.telefono}]]</label>
                                                     <input type="tel" class="form-control" 
                                                            name="telefono" th:field="*{telefono}">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="fechaNacimiento">[[#{usuario.fechaNacimiento}]]</label>
+                                                    <input type="date" class="form-control" 
+                                                           name="fechaNacimiento" th:field="*{fechaNacimiento}"
+                                                           required="true">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="imagen">[[#{usuario.imagen}]]</label>

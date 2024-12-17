@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Perfil de Usuario</title>
+        <meta charset="UTF-8" />
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}" type="text/javascript"></script>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+        <link rel="stylesheet" href="/css/estilos.css">
+    </head>
+    <body>
+        <section th:fragment="mostrarPerfil" id="usuario">
+            <div class="container mt-4">
+                <div class="row justify-content-center">
+                    <!-- Columna Izquierda: Imagen y Datos Básicos -->
+                    <div class="col-md-8">
+                        <div class="row mb-4 align-items-center">
+                            <!-- Imagen del usuario -->
+                            <div class="col-md-4 text-center">
+                                <img th:src="@{${usuario.rutaImagen != null ? usuario.rutaImagen : '/imagenes/default.png'}}"
+                                     alt="Foto del Usuario" class="img-fluid rounded-circle" style="width: 150px; height: 150px;" />
+                            </div>
+                            <!-- Datos Básicos -->
+                            <div class="col-md-8 d-flex flex-column justify-content-center">
+                                <h2 class="mb-2" th:text="${usuario.nombre + ' ' + usuario.apellidos}">Nombre</h2>
+                                <p class="mb-1"><i class="fas fa-briefcase"></i> <strong>Puesto:</strong> <span th:text="${usuario.puesto} ?: 'No especificado'"></span></p>
+                                <p class="mb-1"><i class="fas fa-map-marker-alt"></i> <strong>Ciudad:</strong> <span th:text="${usuario.ciudad} ?: 'No especificada'"></span></p>
+                            </div>
+                        </div>
+
+                        <!-- Sección Descripción, Experiencia, Educación y Certificaciones -->
+                        <div>
+                            <p class="mb-3"><strong>Descripción:</strong></p>
+                            <p th:text="${usuario.descripcion} ?: 'Sin descripción disponible'"></p>
+
+                            <p class="mb-3 mt-4"><strong>Experiencia:</strong></p>
+                            <p th:text="${usuario.experiencia} ?: 'No especificada'"></p>
+
+                            <p class="mb-3 mt-4"><strong>Educación:</strong></p>
+                            <p th:text="${usuario.educacion} ?: 'No especificada'"></p>
+
+                            <p class="mb-3 mt-4"><strong>Certificaciones:</strong></p>
+                            <p th:text="${usuario.certificaciones} ?: 'No disponibles'"></p>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha: Trabajos y Otros Estudios -->
+                    <div class="col-md-4">
+                        <div>
+                            <p class="mb-3"><strong>Trabajos:</strong></p>
+                            <p th:text="${usuario.trabajos} ?: 'No especificados'"></p>
+
+                            <p class="mb-3 mt-4"><strong>Otros Estudios:</strong></p>
+                            <p th:text="${usuario.otrosEstudios} ?: 'No disponibles'"></p>
+                        </div>
+
+                        <!-- Botón Editar -->
+                        <div class="text-end mt-5">
+                            <a th:href="@{/usuario/perfil/editar/{idUsuario}(idUsuario=${usuario.idUsuario})}" 
+                               class="btn btn-outline-primary px-4 py-2">
+                                <i class="fas fa-edit"></i> Editar Perfil
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <!-- Fragmento para editar el perfil del usuario -->
+        <section th:fragment="editarPerfil" id="usuario">
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <form method="POST" th:action="@{/usuario/guardar}" th:object="${usuario}" class="needs-validation" novalidate>
+                            <input type="hidden" th:field="*{idUsuario}" />
+                            <div class="p-4 rounded" style="background: rgba(255, 255, 255, 0.8); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                <!-- Encabezado del Formulario -->
+                                <div class="text-center mb-4">
+                                    <h3 class="fw-bold" style="color: #333;">Editar Perfil</h3>
+                                </div>
+
+                                <div class="row">
+                                    <!-- Puesto -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="puesto" class="form-label">Puesto</label>
+                                        <input type="text" id="puesto" class="form-control" th:field="*{puesto}" required />
+                                    </div>
+
+                                    <!-- Ciudad -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="ciudad" class="form-label">Ciudad</label>
+                                        <input type="text" id="ciudad" class="form-control" th:field="*{ciudad}" required />
+                                    </div>
+                                </div>
+
+                                <!-- Descripción -->
+                                <div class="mb-3">
+                                    <label for="descripcion" class="form-label">Descripción</label>
+                                    <textarea id="descripcion" class="form-control" rows="3" th:field="*{descripcion}"></textarea>
+                                </div>
+
+                                <!-- Experiencia y Educación -->
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="experiencia" class="form-label">Experiencia</label>
+                                        <textarea id="experiencia" class="form-control" rows="3" th:field="*{experiencia}"></textarea>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="educacion" class="form-label">Educación</label>
+                                        <textarea id="educacion" class="form-control" rows="3" th:field="*{educacion}"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Certificaciones y Trabajos -->
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="certificaciones" class="form-label">Certificaciones</label>
+                                        <textarea id="certificaciones" class="form-control" rows="3" th:field="*{certificaciones}"></textarea>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="trabajos" class="form-label">Trabajos</label>
+                                        <textarea id="trabajos" class="form-control" rows="3" th:field="*{trabajos}"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Otros Estudios -->
+                                <div class="mb-3">
+                                    <label for="otrosEstudios" class="form-label">Otros Estudios</label>
+                                    <textarea id="otrosEstudios" class="form-control" rows="3" th:field="*{otrosEstudios}"></textarea>
+                                </div>
+
+                                <!-- Botones -->
+                                <div class="d-flex justify-content-end mt-4">
+                                    <a th:href="@{/usuario/perfil}" class="btn btn-outline-secondary me-2">
+                                        <i class="fas fa-arrow-left"></i> Cancelar
+                                    </a>
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fas fa-save"></i> Guardar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

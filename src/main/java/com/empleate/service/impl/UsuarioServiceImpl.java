@@ -1,4 +1,3 @@
-
 package com.empleate.service.impl;
 
 import com.empleate.dao.RolDao;
@@ -13,10 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
-    
+
     @Autowired
     private UsuarioDao usuarioDao;
-    
+
     @Autowired
     private RolDao rolDao;
 
@@ -49,6 +48,18 @@ public class UsuarioServiceImpl implements UsuarioService {
     public Usuario getUsuarioPorUsernameOCorreo(String username, String correo) {
         return usuarioDao.findByUsernameOrCorreo(username, correo);
     }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public Usuario getUsuarioByIdUsuario(Long idUsuario) {
+        return usuarioDao.findById(idUsuario).orElse(null);
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public Usuario getUsuarioPorId(Long idUsuario) {
+        return usuarioDao.findById(idUsuario).orElse(null);
+    }
 
     @Override
     @Transactional(readOnly = true)
@@ -58,14 +69,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
-    public void save(Usuario usuario, boolean crearRolEmpleado) {
-        usuario=usuarioDao.save(usuario);
-        if (crearRolEmpleado) {  //Si se está creando el usuario, se crea el rol por defecto "USER"
-            Rol rol = new Rol();
-            rol.setNombre("ROLE_EMPLEADO");
-            rol.setIdUsuario(usuario.getIdUsuario());
-            rolDao.save(rol);
-        }
+    public void save(Usuario usuario) {
+        usuarioDao.save(usuario);
     }
 
     @Override

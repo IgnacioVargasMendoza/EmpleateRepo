@@ -59,11 +59,14 @@ public class ProjectConfig implements WebMvcConfigurer {
     /* Los siguiente métodos son para implementar el tema de seguridad dentro del proyecto */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("redirect:/login"); // Redirige a la página de login
         registry.addViewController("/index").setViewName("index");
         registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/perfil/muestra").setViewName("/perfil/muestra");
+        registry.addViewController("/perfil/editar").setViewName("/perfil/editar");
         registry.addViewController("/registro/nuevo").setViewName("/registro/nuevo");
     }
-    
+
 //    /* El siguiente método se utiliza para completar la clase no es 
 //    realmente funcional, la próxima semana se reemplaza con usuarios de BD */
 //    @Bean
@@ -88,7 +91,6 @@ public class ProjectConfig implements WebMvcConfigurer {
 //
 //        return new InMemoryUserDetailsManager(admin, empleador, empleado);
 //    }
-    
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -101,21 +103,30 @@ public class ProjectConfig implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((request) -> request
-                .requestMatchers("/", "/index", "/errores/**", "/registro/**", "/js/**", "/webjars/**", "/error")
-                .permitAll() // Permitir acceso público a rutas básicas y de registro
+                // Rutas públicas
+                .requestMatchers( "/errores/**", "/registro/**", "/js/**", "/webjars/**", "/error", "/perfil/**").permitAll()
+                // Rutas exclusivas para EMPLEADORES
                 .requestMatchers(
-                        "/empleo/nuevo", "/empleo/guardar", "/empleo/modificar/**", "/empleo/eliminar/**",
-                        "/usuario/modificar/**", "/usuario/eliminar/**", "/empresa/nuevo", "/empresa/guardar")
-                .hasRole("ADMIN") // Administrador para control de empleos y usuarios
+                        "/", "/index","/empleo/nuevo", "/empleo/guardar", "/empleo/modificar/**", "/empleo/eliminar/**",
+                        "/usuario/modificar/**", "/usuario/eliminar/**", "/empresa/nuevo", "/empresa/guardar", "/perfil/editar", "/usuario/editar"
+                ).hasRole("EMPLEADOR")
+                // Rutas compartidas por roles específicos
                 .requestMatchers(
-                        "/empleo/listado", "/empresa/listado", "/usuario/perfil")
-                .hasAnyRole("ADMIN", "EMPLEADOR") // Empleadores y administradores
-                .requestMatchers("/postulacion/aplicar/**")
-                .hasRole("EMPLEADO") // Solo empleados pueden postular
+                        "/", "/index","/empleo/listado", "/empresa/listado", "/usuario/perfil", "/usuario/guardar",
+                        "/usuario/perfil/editar", "/usuario/perfil/guardar", "/perfil/editar", "/usuario/editar", "/usuario/perfil/editar/1"
+                ).hasAnyRole("EMPLEADOR", "ESTUDIANTE")
+                // Rutas exclusivas para ESTUDIANTES
+                .requestMatchers("/postulacion/aplicar/**").hasRole("ESTUDIANTE")
                 )
                 .formLogin((form) -> form
-                .loginPage("/login").permitAll())
-                .logout((logout) -> logout.permitAll());
+                .loginPage("/login")
+                .permitAll()
+                )
+                .logout((logout) -> logout
+                .permitAll()
+                );
+
         return http.build();
     }
+
 }
