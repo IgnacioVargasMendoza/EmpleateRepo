@@ -1,65 +1,83 @@
-<!DOCTYPE html>
 
+</html><!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="layout/plantillaEstudiante :: head">
-    </head>
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-    <body>
-        <header th:replace="layout/plantillaEstudiante :: header"></header>
+<head th:replace="~{layout/plantilla :: head}">
+    <title>Agenda de Entrevistas</title>
+</head>
 
-<!--        El container con el espaciado-->
+<body>
+    <header th:replace="~{layout/plantilla :: header}"></header>
+
+    <!-- División de pantalla para formulario y lista -->
+    <section th:fragment="divisionPantalla" class="py-4 mb-4 bg-light">
         <div class="container mt-5">
-<!--        con esto se ayuda que este contenido y el cuadro este a la derecha-->
             <div class="row align-items-start">
-<!--                Estos son los grid examples-->
+                <!-- Columna izquierda: Agendar Entrevista -->
                 <div class="col-md-8">
-                    <h2>Agende una entrevista</h2>
-                    <br>
-                    <br>
-                        
-                    <p style="margin-left: 50px; max-width: 700px;">
-                        Seleccionar postulante
-                    </p>
-                    <input style="width: 400px; height: 26px; margin-left: 50px;" type="text" class="form-control" aria-label="Text input">
-                        
-                    <p style="margin-left: 50px; max-width: 700px;">
-                        Seleccionar fecha
-                    </p>
-                    <input style="width: 400px; height: 26px; margin-left: 50px;" type="text" class="form-control" aria-label="Text input">
-                        
-                    <p style="margin-left: 50px; max-width: 700px;">
-                        puesto de trabajo
-                    </p>
-                    <input style="width: 400px; height: 26px; margin-left: 50px;" type="text" class="form-control" aria-label="Text input">
-                        
-                    
+                    <h2 class="mb-4">[[#{entrevista.creacion}]]</h2>
 
+                    <form th:action="@{/entrevistas/guardar}" method="post" th:object="${entrevista}" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="postulante" class="form-label">[[#{entrevista.SeleccionarPost}]]</label>
+                            <select id="postulante" class="form-select" th:field="*{postulante}" required>
+                                <option value="" disabled selected>Seleccionar postulante</option>
+                                <option th:each="postulante : ${postulantes}" th:value="${postulante.id}" th:text="${postulante.nombre}"></option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="fecha" class="form-label">[[#{entrevista.fecha}]]</label>
+                            <input id="fecha" type="date" class="form-control" th:field="*{fechaEntrevista}" required/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="puesto" class="form-label">[[#{entrevista.puestoTrabajo}]]</label>
+                            <select id="puesto" class="form-select" th:field="*{puestoTrabajo}" required>
+                                <option value="" disabled selected>Seleccionar puesto</option>
+                                <option th:each="puesto : ${puestos}" th:value="${puesto.id}" th:text="${puesto.nombre}"></option>
+                            </select>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-calendar-plus"></i> [[#{entrevista.btnEnviar}]]
+                            </button>
+                        </div>
+                    </form>
                 </div>
 
-<!--                Este es el otro grid example-->
+                <!-- Columna derecha: Reporte de Entrevistas -->
                 <div class="col-md-4">
-                    <h2>Agende una entrevista</h2>
-                    
-                    <div class="diseñoPostulacion4">
-                        
-                        <h5>Nombre</h5>
-                        <input style="width: 350x; height: 26px;" type="text" class="form-control" aria-label="Text input">
-                        <br>
-                            
-                        <h5>Confirmacion de entrevista</h5>
-                        <input style="width: 350x; height: 26px;" type="text" class="form-control" aria-label="Text input">
-                        <br>
-                            
-                        <h5>Puesto de trabajo</h5>
-                        <input style="width: 350x; height: 26px;" type="text" class="form-control" aria-label="Text input">
-                        <br>
-                            
+                    <h2 class="mb-4">[[#{entrevista.reporteEntrevista}]]</h2>
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Postulante</th>
+                                <th>Puesto</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="entrevista : ${entrevistas}">
+                                <td th:text="${entrevista.id}">1</td>
+                                <td th:text="${entrevista.postulante.nombre}">Nombre Postulante</td>
+                                <td th:text="${entrevista.puestoTrabajo.nombre}">Puesto de Trabajo</td>
+                                <td th:text="${#dates.format(entrevista.fechaEntrevista, 'dd-MM-yyyy')}">Fecha</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center p-2" th:if="${entrevistas == null or entrevistas.empty}">
+                        <span>No hay entrevistas registradas.</span>
                     </div>
                 </div>
             </div>
         </div>
-        <footer th:replace="layout/plantilla :: footer"></footer>
+    </section>
 
-    </body>
+    <footer th:replace="~{layout/plantilla :: footer}"></footer>
+</body>
 </html>

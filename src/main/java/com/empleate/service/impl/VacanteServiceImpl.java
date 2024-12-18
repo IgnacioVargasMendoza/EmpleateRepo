@@ -1,22 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.empleate.service.impl;
 
 import com.empleate.dao.VacanteDao;
 import com.empleate.domain.Vacante;
 import com.empleate.service.VacanteService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
-/**
- *
- * @author Ignac
- */
 @Service
-public class VacanteServiceImpl implements VacanteService{
+public class VacanteServiceImpl implements VacanteService {
 
     @Autowired
     private VacanteDao vacanteDao;
@@ -27,18 +19,17 @@ public class VacanteServiceImpl implements VacanteService{
     }
 
     @Override
-    public Vacante guardarVacante(Vacante vacante) {
-        return vacanteDao.save(vacante);
+    public Vacante encontrarVacante(Long idVacante) {
+        return vacanteDao.findById(idVacante).orElse(null);
     }
 
     @Override
-    public Vacante obtenerVacantePorId(Long id) {
-        return vacanteDao.findById(id).orElse(null);
+    public void guardar(Vacante vacante) {
+        vacanteDao.save(vacante);
     }
 
     @Override
-    public void eliminarVacante(Long id) {
-        vacanteDao.deleteById(id);
+    public void eliminar(Long idVacante) {
+        vacanteDao.deleteById(idVacante);
     }
-
 }

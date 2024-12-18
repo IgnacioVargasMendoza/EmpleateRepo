@@ -6,14 +6,20 @@
         <title>empleate</title>
     </head>
     <body>
+ 
         <header th:replace="~{layout/plantilla :: header}"></header>
 
-        <section th:replace="~{empleos/fragmentosEmpleo :: botonesAgregar}"></section>
-        <section th:replace="~{empleos/fragmentosEmpleo :: agregarEmpleo}"></section>
-        <section th:replace="~{empleos/fragmentosEmpleo :: botonesNivelEmpleo}"></section>
-        <section th:replace="~{empleos/fragmentosEmpleo :: listadoEmpleos}"></section>
-        
-        <footer th:replace="~{layout/plantilla :: footer}"></footer>
 
+        <section th:replace="~{empleos/fragmentosEmpleo :: botonesAgregar}"></section>
+
+
+        <section th:replace="~{empleos/fragmentosEmpleo :: agregarEmpleo}"></section>
+
+
+        <section th:replace="~{empleos/fragmentosEmpleo :: botonesNivelEmpleo}"></section>
+
+        <section th:replace="~{empleos/fragmentosEmpleo :: listadoEmpleos}"></section>
+
+        <footer th:replace="~{layout/plantilla :: footer}"></footer>
     </body>
 </html>

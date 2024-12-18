@@ -8,15 +8,13 @@ import org.springframework.stereotype.Service;
  *
  * @author Ignac
  */
-
 public interface VacanteService {
 
     List<Vacante> listarVacantes();
 
-    Vacante guardarVacante(Vacante vacante);
+    Vacante encontrarVacante(Long idVacante);
 
-    Vacante obtenerVacantePorId(Long id);
+    void guardar(Vacante vacante);
 
-    void eliminarVacante(Long id);
-    
+    void eliminar(Long idVacante);
 }
